@@ -18,6 +18,7 @@ var dir = {
 	js: 'src/js/*.js',
 	jslib: 'src/js/lib/',
 	php: '*.php',
+	html: '*.html',
 	img: 'src/img/**',
 	build: 'dist/',
 	buildCss: 'dist/css/',

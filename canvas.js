@@ -59,8 +59,11 @@ function drawCircles(){
             var y = getRandomInt(0,sHeight);
             var r = getRandomInt(0,10);
             
+            
             ctx.arc(x,y,r,180,Math.PI*2,true); // Outer circle
-        //    ctx.moveTo(x,y); //line
+            y = y + r;
+            ctx.moveTo(x,y); //line
+        //    x = x + r;
             
             //ctx.arc();
         }
@@ -70,7 +73,58 @@ function drawCircles(){
     }
 }
 
-drawCircles();
+function drawCircles2(){
+    var canvas = document.getElementById('canvas');
+    var sWidth = canvas.width;
+    var sHeight = canvas.height;
+
+    var cirles = 50;//nrCirles;
+    var baseX = 50; //getRandomInt(0,sWidth);
+    var baseY = 50; //getRandomInt(0,sHeight);
+    var r = getRandomInt(1,10);
+    console.log(baseX + ' ' + baseY + ' ' + r);
+
+    var x1,x2,x3,y1,y2,y3;
+
+    if (canvas.getContext){
+        var ctx = canvas.getContext('2d');
+    
+        //bazowy pkt
+    //    ctx.moveTo(baseX, baseY);
+        ctx.arc(baseX,baseY,r,0,Math.PI*2,true); 
+        ctx.moveTo(baseX, baseY);
+        //ctx.fill();
+
+        x1 = baseX + getRandomInt(0,sWidth);
+        y1 = baseY;
+        x2 = baseX;
+        y2 = baseY + getRandomInt(0,sHeight);
+        x3 = baseX + getRandomInt(0,sWidth);
+        x3 = y3 = baseY + getRandomInt(0,sHeight);
+        
+        r = getRandomInt(1,10);
+
+        ctx.arc(x1,y1,r,0,Math.PI*2,true);
+    //    ctx.moveTo(x1, y1);
+    //    ctx.moveTo(baseX, baseY);
+
+        r = getRandomInt(1,10);
+        ctx.arc(x2,y2,r,0,Math.PI*2,true);
+    //    ctx.moveTo(x2, y2);
+        ctx.moveTo(baseX, baseY);
+
+        r = getRandomInt(1,10);
+        ctx.arc(x3,y3,r,0,Math.PI*2,true);
+        //ctx.moveTo(x3, y3);
+    //    ctx.moveTo(baseX, baseY);
+    
+        ctx.stroke();
+        ctx.beginPath();
+    }
+}
+
+drawCircles2();
+//drawCircles();
 // drawTriangle();
 // drawCirle();
 // drawSmile();

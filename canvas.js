@@ -88,12 +88,11 @@ function drawCircles2(){
 
     if (canvas.getContext){
         var ctx = canvas.getContext('2d');
-    
         //bazowy pkt
     //    ctx.moveTo(baseX, baseY);
-        ctx.arc(baseX,baseY,r,0,Math.PI*2,true); 
         ctx.moveTo(baseX, baseY);
-        //ctx.fill();
+        ctx.arc(baseX,baseY,r,0,Math.PI*2,true); 
+        ctx.fill();
 
         x1 = baseX + getRandomInt(0,sWidth);
         y1 = baseY;
@@ -103,27 +102,66 @@ function drawCircles2(){
         x3 = y3 = baseY + getRandomInt(0,sHeight);
         
         r = getRandomInt(1,10);
-
+        ctx.lineTo(x1,y1);
+        ctx.moveTo(x1, y1);
         ctx.arc(x1,y1,r,0,Math.PI*2,true);
-    //    ctx.moveTo(x1, y1);
-    //    ctx.moveTo(baseX, baseY);
+        ctx.fill();
 
-        r = getRandomInt(1,10);
-        ctx.arc(x2,y2,r,0,Math.PI*2,true);
-    //    ctx.moveTo(x2, y2);
-        ctx.moveTo(baseX, baseY);
+        // r = getRandomInt(1,10);
+        // ctx.moveTo(baseX, baseY);
+        // ctx.lineTo(x2,y2);
+        // ctx.moveTo(x2, y2);
+        // ctx.arc(x2,y2,r,0,Math.PI*2,true);
+        // ctx.fill();
+        
+        // r = getRandomInt(1,10);
+        // ctx.moveTo(baseX, baseY);
+        // ctx.lineTo(x3,y3);
+        // ctx.moveTo(x3, y3);
+        // ctx.arc(x3,y3,r,0,Math.PI*2,true);
+        // ctx.fill();
 
-        r = getRandomInt(1,10);
-        ctx.arc(x3,y3,r,0,Math.PI*2,true);
-        //ctx.moveTo(x3, y3);
-    //    ctx.moveTo(baseX, baseY);
+        for(var i=2; i<=cirles; i++){
+            xt = getRandomInt(0,sWidth);
+            yt = getRandomInt(0,sHeight);
+            xt[i] = xt;
+            yt[i] = yt;
+
+            console.log(xt);
+
+            r = getRandomInt(1,10);
+            ctx.moveTo(xt[i],yt[i]);
+        //    ctx.lineTo(xt[i],yt[i]);
+        //    ctx.moveTo(xt[i], yt[i]);
+            ctx.arc(xt[i],yt[i],r,0,Math.PI*2,true);
+            ctx.fill();  
+        }
     
         ctx.stroke();
         ctx.beginPath();
     }
 }
 
-drawCircles2();
+function drawPath(){
+    var canvas = document.getElementById('canvas');
+
+    if(canvas.getContext){
+        var ctx = canvas.getContext('2d');
+
+        var rectangle = new Path2D();
+        rectangle.rect(10, 10, 50, 50);
+
+        var circle = new Path2D();
+        circle.moveTo(125, 35);
+        circle.arc(100,35,25,0,2*Math.PI);
+
+        ctx.stroke(rectangle);
+        ctx.fill(circle);
+    }
+}
+
+drawPath();
+//drawCircles2();
 //drawCircles();
 // drawTriangle();
 // drawCirle();

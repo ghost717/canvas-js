@@ -155,12 +155,37 @@ function drawPath(){
         circle.moveTo(125, 35);
         circle.arc(100,35,25,0,2*Math.PI);
 
+        var p = new Path2D('M20 20 h 80 v 80 h -80 Z');
+        
         ctx.stroke(rectangle);
         ctx.fill(circle);
+        ctx.stroke(p);
     }
 }
 
+function saveRestore(){
+    var ctx = document.getElementById('canvas2').getContext('2d');
+
+    ctx.fillRect(0,0,150,150);
+    ctx.save();
+
+    ctx.fillStyle = '#09F';
+    ctx.fillRect(15,15,120,120);
+    ctx.save();
+
+    ctx.fillStyle = '#fff';
+    ctx.globalAlpha = 0.5;
+    ctx.fillRect(30,30,90,90);
+
+    ctx.restore();
+    ctx.fillRect(45,45,60,60);
+
+    ctx.restore();
+    ctx.fillRect(60,60,30,30);
+}
+
 drawPath();
+saveRestore();
 //drawCircles2();
 //drawCircles();
 // drawTriangle();

@@ -261,12 +261,35 @@ function transforms(){
     ctx.fillRect(0, 50, 100, 100);
 }
 
+function drawSquare(){
+    var ctx = document.getElementById('canvas3').getContext('2d');
+
+    for(var i = 0; i<12; i++){
+        for(var j = 0; j < 12; j++){
+            
+             ctx.save();
+            // ctx.fillStyle = 'rgb(' + (51 * i) + ', ' + (255 - 51 * i) + ', 255)';
+            c = Math.floor(255 / 12 * i);
+            ctx.fillStyle = 'rgb(' + c + ', ' + c + ', ' + c + ')';
+
+            ctx.translate(0 + j * 25, 10 + i * 25);
+        //    ctx.translate(425, 100);
+        //    ctx.transform(0, 45, -45, 0, 0, 0);
+            ctx.fillRect(0,0,20,20);
+            ctx.restore();
+            
+        }
+    }
+
+}
+
 drawPath();
 saveRestore();
 translate();
 //rotate();
 //scale();
 transforms();
+//drawSquare();
 
 //drawCircles2();
 //drawCircles();

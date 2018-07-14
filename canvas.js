@@ -226,12 +226,28 @@ function rotate() {
     // draw grey rect
     ctx.fillStyle = '#4D4E53';
     ctx.fillRect(150, 30, 100, 100);
-  }
+}
+
+function scale(){
+    var ctx = document.getElementById('canvas2').getContext('2d');
+
+    ctx.save();
+    ctx.scale(3, 3);
+    ctx.fillRect(150, 10, 10, 10);
+    ctx.restore();
+
+    ctx.scale(-1, 1);
+    ctx.font = '20px serif';
+//    ctx.fillText('MDN', -135, 120);
+}
 
 drawPath();
 saveRestore();
 translate();
 //rotate();
+scale();
+
+
 //drawCircles2();
 //drawCircles();
 // drawTriangle();

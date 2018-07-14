@@ -184,8 +184,23 @@ function saveRestore(){
     ctx.fillRect(60,60,30,30);
 }
 
+function translate(){
+    var ctx = document.getElementById('canvas2').getContext('2d');
+
+    for(var i = 0; i<3; i++){
+        for(var j = 0; j < 3; j++){
+            ctx.save();
+            ctx.fillStyle = 'rgb(' + (51 * i) + ', ' + (255 - 51 * i) + ', 255)';
+            ctx.translate(200 + j * 50, 10 + i * 50);
+            ctx.fillRect(0,0,25,25);
+            ctx.restore();
+        }
+    }
+}
+
 drawPath();
 saveRestore();
+translate();
 //drawCircles2();
 //drawCircles();
 // drawTriangle();

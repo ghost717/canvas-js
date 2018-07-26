@@ -119,6 +119,20 @@ h6{
 	justify-content: center;
 }
 
+.flat-icons{
+	li{
+		display: inline-block;
+	}
+	svg{
+		width: 20px;
+		height: 20px;
+
+		path{
+			fill: #000;
+		}
+	}
+}
+
 .menu__toggle {
 	display: none;
 }

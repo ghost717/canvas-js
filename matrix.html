@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <!-- encoding -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- info / SEO -->
+        <title>Matrix - Canvas JS</title>
+        <meta name="description" content="">
+        
+        <!-- css -->
+        <link rel="stylesheet" href="dist/css/lib.css">
+        <link rel="stylesheet" href="dist/css/app.css">
+        
+        <!-- fonts -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+    </head>
+    <body>
+        <header class="header">
+            <div class="wrap">
+
+                <a class="header__branding" href="">
+                <img src="" alt="">
+                </a>
+
+                <nav class="header__nav" role="navigation">
+
+                <button class="header__nav__button menu__toggle">
+                    <span class="menu__line"></span>
+                    <span class="menu__line"></span>
+                    <span class="menu__line"></span>
+                </button>
+                </nav>
+
+            </div>
+        </header>
+
+        <main class="main">
+            <canvas id="canvas" width="500" height="300"></canvas>
+        </main>
+
+        <footer class="footer">
+            <div class="wrap content">
+                <img src="dist/img/vector.png" alt="">
+            </div>
+        </footer>
+
+<script>    
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    
+    //making the canvas full screen
+    c.height = window.innerHeight;
+    c.width = window.innerWidth;
+    
+    //chinese characters - taken from the unicode charset
+    var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+    
+    //converting the string into an array of single characters
+    chinese = chinese.split("");
+    
+    var font_size = 10;
+    var columns = c.width/font_size; //number of columns for the rain
+    //an array of drops - one per column
+    var drops = [];
+    //x below is the x coordinate
+    //1 = y co-ordinate of the drop(same for every drop initially)
+    for(var x = 0; x < columns; x++)
+        drops[x] = 1; 
+    
+    //drawing the characters
+    function draw()
+    {
+        //Black BG for the canvas
+        //translucent BG to show trail
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, c.width, c.height);
+        
+        ctx.fillStyle = "#0F0"; //green text
+        ctx.font = font_size + "px arial";
+        //looping over drops
+        for(var i = 0; i < drops.length; i++)
+        {
+            //a random chinese character to print
+            var text = chinese[Math.floor(Math.random()*chinese.length)];
+            //x = i*font_size, y = value of drops[i]*font_size
+            ctx.fillText(text, i*font_size, drops[i]*font_size);
+            
+            //sending the drop back to the top randomly after it has crossed the screen
+            //adding a randomness to the reset to make the drops scattered on the Y axis
+            if(drops[i]*font_size > c.height && Math.random() > 0.975)
+                drops[i] = 0;
+            
+            //incrementing Y coordinate
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 33);
+    
+    // init();
+</script>
+        <!-- 
+        <script src="canvas.js"></script>
+        <script src="/dist/js/lib.js"></script>
+        <script src="/dist/js/app.js"></script> -->
+
+    </body>
+</html>
